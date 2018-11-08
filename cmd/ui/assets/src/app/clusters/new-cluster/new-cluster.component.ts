@@ -62,7 +62,7 @@ export class NewClusterComponent implements OnInit, OnDestroy {
   getCloudAccounts() {
     this.subscriptions.add(this.supergiant.CloudAccounts.get().subscribe(
       (cloudAccounts) => {
-        this.availableCloudAccounts = cloudAccounts;
+        this.availableCloudAccounts = cloudAccounts.sort();
       })
     );
   }
