@@ -193,14 +193,15 @@
             </mat-form-field>
 
             <mat-form-field class="role">
-              <mat-select placeholder="Role" [(value)]="m.role" (selectionChange)="checkForValidMachinesConfig()">
+              <mat-select placeholder="Role" [(value)]="m.role" (selectionChange)="changeMachineRole($event, idx)">
                 <mat-option value="Master">Master</mat-option>
                 <mat-option value="Node">Node</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field class="quantity">
-              <input matInput type="number" min="1" placeholder="Q-ty" [(ngModel)]="m.qty" (ngModelChange)="checkForValidMachinesConfig()">
+              <input *ngIf="m.role == 'Master'" matInput type="number" min="1" step="2" placeholder="Q-ty" [(ngModel)]="m.qty" (ngModelChange)="checkForValidMachinesConfig()">
+              <input *ngIf="m.role != 'Master'" matInput type="number" min="1" placeholder="Q-ty" [(ngModel)]="m.qty" (ngModelChange)="checkForValidMachinesConfig()">
             </mat-form-field>
 
             <div class="delete" (click)="deleteMachine(idx)" (keyup)="deleteMachine(idx, $event)" tabindex="0"></div>

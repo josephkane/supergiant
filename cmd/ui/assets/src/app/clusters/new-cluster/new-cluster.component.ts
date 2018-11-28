@@ -232,6 +232,17 @@ export class NewClusterComponent implements OnInit, OnDestroy {
     }
   }
 
+  changeMachineRole(e, idx) {
+    // masters qty must be odd
+    if (e.value == "Master") {
+      if (this.machines[idx].qty % 2 == 0) {
+        this.machines[idx].qty = this.machines[idx].qty - 1
+      }
+    }
+
+    this.checkForValidMachinesConfig();
+  }
+
   selectCloudAccount(cloudAccount) {
     this.selectedCloudAccount = cloudAccount;
 
